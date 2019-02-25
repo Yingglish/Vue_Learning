@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+    <script src="https://cdn.staticfile.org/vue-router/2.7.0/vue-router.min.js"></script>
+    <title>嵌套路由</title>
+</head>
+<body>
+    <div id="app">
+        <p>
+            <router-link to="/user/foo">/user/foo</router-link>
+            <router-link to="/user/foo/profile">/user/foo/profile</router-link>
+            <router-link to="/user/foo/posts">/user/foo/posts</router-link>
+        </p>
+        <router-view></router-view>
+    </div>
+    <script>
+        //定义组件  
+        const User = {
+            template:`
+            <div class = "user"> 
+            <h2>User {{ $route.params.id }}</h2>
+            <router-view> </router-view>
+            `
+        }
+        const UserHome = { template: '<div>Home</div>' }
+        const UserProfile = { template: '<div>Profile</div>' }
+        const UserPosts = { template: '<div>Posts</div>' }
+        // 传入路由配置，创建router实例
+        const router = new VueRouter({
+            routes:[
+                { path : '/user/:id' , component : User , children:[
+                    { path : '' , component : UserHome },
+                    { path : 'profile' ,component : UserProfile },
+                    { path : 'posts' ,component : UserPosts }
+                ]}
+            ]
+        })
+        const app = new Vue({
+            router
+        }).$mount('#app')
+    </script>
+</body>
+</html>

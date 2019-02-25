@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <my-component @myclick="onClick"></my-component>
+    </div>
+    <script>
+      Vue.component('my-component', {
+        template: `<div>
+        <button type="button" @click="childClick">点击我触发自定义事件</button>
+        </div>`,
+        methods: {
+          childClick () {
+            this.$emit('myclick', '这是我暴露出去的数据', '这是我暴露出去的数据2')
+          }
+        }
+      })
+      new Vue({
+        el: '#app',
+        methods: {
+          onClick () {
+            console.log(arguments)
+          }
+        }
+      })
+    </script>
+</body>
+</html>

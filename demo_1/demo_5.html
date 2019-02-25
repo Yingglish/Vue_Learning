@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+    <script src="https://cdn.staticfile.org/vue-router/2.7.0/vue-router.min.js"></script>
+    <title>Vue 路由</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 使用router-link 组件来导航 -->
+        <!-- 通过传入 `to` 属性绑定路由 -->
+        <!-- <router-link> 默认渲染为一个<a>标签 -->
+        <router-link to="/foo">Go to Foo</router-link>
+        <router-link to="/bar">Go to Bar</router-link>
+        <br>
+        <!-- 路由出口,路由匹配到的组件将渲染在这里  -->
+        <router-view></router-view>
+    </div>
+    <script>
+        //1. 定义路由组件
+        const Foo = { template:'<div>foo</div>'}
+        const Bar = { template:'<div>bar</div>'}
+        //2.定义路由 ,每个路由应该映射一个组件
+        const routes = [
+            {path:"/foo" , component : Foo},
+            {path:"/bar", component : Bar}
+        ]
+        //3.创建 router实例，传入`routes`配置
+        const router = new VueRouter({
+            routes // (缩写) 相当于 routes: routes
+        })
+        const vm = new Vue({
+            router
+        }).$mount('#app')
+    </script>
+</body>
+</html>
