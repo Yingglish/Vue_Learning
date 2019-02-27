@@ -13,15 +13,31 @@
         <p class="static" v-bind:class="classObject"></p>
         <!-- 在控制台输入`vm.site = 'Google www.google.com` 将会调用计算属性site的setter方法，渲染结果将会改变 '-->
         <p>{{ site }}</p>
+        <p>原始字符串{{ message }}</p>       
+        <p>计算后反转字符串 {{ reverseMessage_2 }}</p>
+        <p>计算后反转字符串 {{ reverseMessage_2 }}</p>
+        <p>调用方法反转字符串 {{ reverseMessage_1() }} </p>
+        <p>调用方法反转字符串 {{ reverseMessage_1() }} </p>
+        <!-- 计算属性`reverseMessage_2`依赖响应式属性`message`,当`messgae`改变了,computed才会从新计算-->
+        <!-- 在控制台输入`vm.mesgge='message'`观察-->
     </div>
     <script>
+        //"use strict";
+        var num = 1;
         var vm = new Vue({
             el:'#app',
             data:{
                 isActive:true,
                 error:null,
                 name:'Baidu',
-                url:'www.baidu.com'
+                url:'www.baidu.com',
+                message:'Hello World'
+            },
+            methods: {
+                reverseMessage_1 : function() {
+                    num+=1;
+                    return this.message.split('').reverse().join('') +  `   num = ${num}`;
+                },
             },
             computed: {
                 //返回一个`对象`的 计算属性
@@ -42,8 +58,11 @@
                         this.name = values[0];
                         this.url = values[1];
                     }
-                }
-                
+                },
+                reverseMessage_2 : function(){
+                    num++;
+                    return this.message.split('').reverse().join('') + `   num = ${num}`;
+                }            
             },
         })
     </script>
