@@ -9,23 +9,41 @@
 </head>
 <body>
     <div id = "app">
+        <!-- 利用计算属性绑定类 -->
         <p class="static" v-bind:class="classObject"></p>
+        <!-- 在控制台输入`vm.site = 'Google www.google.com` 将会调用计算属性site的setter方法，渲染结果将会改变 '-->
+        <p>{{ site }}</p>
     </div>
     <script>
         var vm = new Vue({
             el:'#app',
             data:{
                 isActive:true,
-                error:null
+                error:null,
+                name:'Baidu',
+                url:'www.baidu.com'
             },
             computed: {
-                //返回一个对象的计算属性
+                //返回一个`对象`的 计算属性
                 classObject:function(){
                     return {
                         active: this.isActive && !this.error,
-                        'text-danger' : this.error && this.error.type === 'fatal'
+                        'text-danger' : this.error && this.error.type === 'fatal' //this指向vm实例
+                    };
+                },
+                site:{
+                    // 计算属性的getter
+                    get:function(){
+                        return this.name + ' ' + this.url;
+                    },
+                    // 计算属性的setter
+                    set:function(newValue){
+                        values = newValue.split(' ');
+                        this.name = values[0];
+                        this.url = values[1];
                     }
                 }
+                
             },
         })
     </script>
