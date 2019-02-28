@@ -59,15 +59,16 @@ Vue.component('todo-item',{
   //"prop" 类似于一个自定义特性
   // 这个prop名为todo
   props:['todo'],
-  template:'<li>{{ todo.text }}</li>'
+  template:'<li>text: {{ todo.text }}  --  id: {{todo.id}}</li>'
 })
 var app6 = new Vue({
   el: "#app-6",
   data:{
     groceryList:[
-      { id : 0 ,text: '蔬菜'},
-      { id : 1 ,text: '奶酪'},
-      { id : 2 ,text: '随便咯'}
+      { id : 1 ,text: '蔬菜'},
+      { id : 4 ,text: '新插入的数据'},
+      { id : 2 ,text: '奶酪'},
+      { id : 3 ,text: '随便咯'}
     ]
   }
 })

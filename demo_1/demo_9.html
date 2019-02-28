@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>`native`修饰符</title>
     <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
 </head>
 
 <body>
     <div id="app">
+        <p>在父组件中给子组件绑定一个原生的事件, 就将子组件变成了普通的HTML标签，不加`.native`是无法触发的</p>
         <p>点击元素输出元素内容:</p>
         <ol>
             <todo-item v-for="item in sites" v-bind:todo="item" @click.native="alert(item.text)"></todo-item>
