@@ -64,6 +64,8 @@
             this.$emit('update:myAge',this.myAge)
           },
           //使用v-bind 和 v-on 来替代时需将事件名改为 update:my-age
+          //v-on 事件监听器在 DOM 模板中会被自动转换为全小写 (因为 HTML 是大小写不敏感的)
+          //所以 v-on:myEvent 将会变成 v-on:myevent——导致 myEvent 不可能被监听到
         },
         props:['myName','myAge']
       }
