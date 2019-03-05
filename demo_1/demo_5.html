@@ -15,6 +15,10 @@
         <!-- <router-link> 默认渲染为一个<a>标签 -->
         <router-link to="/foo">Go to Foo</router-link>
         <br>
+        <router-link to="/foo/profile">Go to Foo/Proflie</router-link>
+        <br>
+        <router-link to="/foo/all">Go to /</router-link>
+        <br>
         <router-link to="/bar">Go to Bar</router-link>
         <br>
         <!-- 路由出口,路由匹配到的组件将渲染在这里  -->
@@ -22,11 +26,31 @@
     </div>
     <script>
         //1. 定义路由组件
-        const Foo = { template:'<div>foo</div>'}
-        const Bar = { template:'<div>bar</div>'}
+        const Foo = { template:`
+            <div>
+                <span>foo</span>
+                <router-view></router-view>
+            </div>
+        `
+        };
+        const Bar = { template:`
+            <div>bar</div>
+        `};
+        const FooProfile = { template: '<div>profile</div>'}
         //2.定义路由 ,每个路由应该映射一个组件
         const routes = [
-            {path:"/foo" , component : Foo},
+            {
+                path:"/foo" ,
+                component : Foo,
+                children:[
+                    {
+                        path:'profile',component:FooProfile
+                    },
+                    {
+                        path : '/' , component : Foo //在`/foo`处渲染出两个Foo组件
+                    },
+                ]
+            },
             {path:"/bar", component : Bar}
         ]
         //3.创建 router实例，传入`routes`配置
