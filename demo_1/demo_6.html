@@ -22,13 +22,14 @@
         const User = {
             template:`
             <div class = "user"> 
-            <h2>User {{ $route.params.id }}</h2>
+            <h1>参数渲染: User {{ $route.params.id }} </h1>
             <router-view> </router-view>
+            </div>
             `
         }
-        const UserHome = { template: '<div>Home</div>' }
-        const UserProfile = { template: '<div>Profile</div>' }
-        const UserPosts = { template: '<div>Posts</div>' }
+        const UserHome = { template: '<h2>Home</h2>' }
+        const UserProfile = { template: '<h2>Profile</h2>' }
+        const UserPosts = { template: '<h2>Posts</h2>' }
         // 传入路由配置，创建router实例
         const router = new VueRouter({
             routes:[
