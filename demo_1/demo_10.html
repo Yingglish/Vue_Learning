@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>路由传参</title>
+</head>
+<body>
+    <div id="app">
+        <p>
+            <router-link to="/">Home</router-link>
+            <router-link to="/about">About Us</router-link>
+        </p>
+        <router-view></router-view>
+    </div>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+    <script src="https://cdn.staticfile.org/vue-router/2.7.0/vue-router.min.js"></script>
+    <script>
+        // 路由配置
+        const routes = [{
+                path: '/',
+                component: {
+                    template: `
+                    <div>
+                        <h1>Home</h1>
+                    </div>
+                    `
+                }
+            },
+            {
+                path: '/about',
+                component: {
+                    template: `
+                    <div>
+                        <h1>About Us</h1>
+                    </div>
+                    `
+                }
+            },
+        ];
+
+        const router = new VueRouter({
+            routes:routes,
+        });
+        new Vue({
+            router:router,
+        }).$mount('#app')
+    </script>
+</body>
+</html>
