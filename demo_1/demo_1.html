@@ -13,6 +13,7 @@
         <p class="static" v-bind:class="classObject"></p>
         <!-- 在控制台输入`vm.site = 'Google www.google.com` 将会调用计算属性site的setter方法，渲染结果将会改变 '-->
         <p>{{ site }}</p>
+        <p>当前时间{{ date }}</p>
         <p>原始字符串{{ message }}</p>       
         <p>计算后反转字符串 {{ reverseMessage_2 }}</p>
         <p>计算后反转字符串 {{ reverseMessage_2 }}</p>
@@ -61,8 +62,12 @@
                 },
                 reverseMessage_2 : function(){
                     num++;
-                    return this.message.split('').reverse().join('') + `   num = ${num}`;
-                }            
+                    return this.message.split('').reverse().join('') + `   num = ${num}`; //依赖实例的message数据
+                },
+                date:function(){
+                    num ++;
+                    return Date.now() + '  num = ' + num;
+                }          
             },
         })
     </script>
