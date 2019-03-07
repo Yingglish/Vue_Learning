@@ -2,15 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
     <title>计算属性</title>
 </head>
 <body>
     <div id = "app">
-        <!-- 利用计算属性绑定类 -->
-        <p class="static" v-bind:class="classObject"></p>
         <!-- 在控制台输入`vm.site = 'Google www.google.com` 将会调用计算属性site的setter方法，渲染结果将会改变 '-->
         <p>{{ site }}</p>
         <p>当前时间{{ date }}</p>
@@ -28,8 +24,6 @@
         var vm = new Vue({
             el:'#app',
             data:{
-                isActive:true,
-                error:null,
                 name:'Baidu',
                 url:'www.baidu.com',
                 message:'Hello World'
@@ -41,13 +35,6 @@
                 },
             },
             computed: {
-                //返回一个`对象`的 计算属性
-                classObject:function(){
-                    return {
-                        active: this.isActive && !this.error,
-                        'text-danger' : this.error && this.error.type === 'fatal' //this指向vm实例
-                    };
-                },
                 site:{
                     // 计算属性的getter
                     get:function(){
